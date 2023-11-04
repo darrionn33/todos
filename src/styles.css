@@ -13,3 +13,71 @@ html {
   user-select: none;
   -webkit-tap-highlight-color: transparent;
 }
+/* To-do List Styles */
+.todo-list {
+  width: min(90%, 750px);
+  padding: 10px;
+  display: grid;
+  place-items: center;
+  margin: auto;
+}
+.todo-list > h2 {
+  width: 100%;
+  margin-bottom: 20px;
+  background-color: cornflowerblue;
+  color: white;
+  padding: 10px;
+}
+.todo-item {
+  display: grid;
+  align-items: center;
+  outline: 1px solid;
+  padding: 10px;
+  width: 100%;
+  grid-template-columns: 30px 70fr 20fr;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.todo-item > p {
+  padding: 5px;
+  outline: 1px solid black;
+  height: 2em;
+  align-self: self-end;
+  text-align: center;
+  line-height: 150%;
+}
+.todo-item[data-priority="chill"] > p {
+  background-color: lightgreen;
+}
+.todo-item[data-priority="moderate"] > p {
+  background-color: yellow;
+}
+.todo-item[data-priority="urgent"] > p {
+  background-color: red;
+  color: white;
+}
+.todo-item > div.checkbox {
+  display: grid;
+  place-content: center;
+  border: 1px solid black;
+  width: 10px;
+  height: 10px;
+  border-radius: 20px;
+  padding: 10px;
+}
+.todo-item > div.checkbox.checked::after {
+  content: "\2713";
+  font-size: 20px;
+  background-color: transparent;
+}
+.todo-item:has(.checked) {
+  background-color: lightgray;
+}
+.todo-item:has(.checked) > h3 {
+  text-decoration: line-through;
+  text-decoration-thickness: 4px;
+}
+.todo-item:has(.checked) > p {
+  background-color: transparent !important;
+  color: black !important;
+}
