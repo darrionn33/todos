@@ -6,11 +6,11 @@ import signal from "signal-js";
 const defaultList = {
   title: "List #1",
   list: [
-    { title: "Poop", priority: "urgent", checked: false },
-    { title: "Eat Breakfast", priority: "moderate", checked: false },
-    { title: "Wash Dishes", priority: "chill", checked: false },
-    { title: "Bathe Ezio", priority: "chill", checked: false },
-    { title: "Beat Ezio Up", priority: "urgent", checked: false },
+    { title: "Brush teeth", priority: "urgent", checked: false },
+    { title: "Eat breakfast", priority: "moderate", checked: false },
+    { title: "Wash dishes", priority: "chill", checked: false },
+    { title: "Take a poop", priority: "chill", checked: false },
+    { title: "Cook rice", priority: "urgent", checked: false },
   ],
 };
 
@@ -27,6 +27,10 @@ signal.on("addListEntry", (indexOrEntry, type) => {
       break;
     case "checkbox":
       list.list[indexOrEntry].checked = !list.list[indexOrEntry].checked;
+      break;
+    case "delete":
+      list.list.splice(indexOrEntry, 1);
+      signal.emit("refreshTodoList");
       break;
   }
   localStorage.setItem("list", JSON.stringify(list));
