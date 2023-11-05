@@ -4,8 +4,16 @@ import newListItemDiv from "./newListItemDiv";
 export default function todoList(listItem) {
   const todoList = put("div.todo-list");
   put(todoList, "h2", listItem.title);
-  listItem.list.forEach((listObject) => {
-    put(todoList, todoListItem(listObject.title, listObject.priority));
+  listItem.list.forEach((listObject, index) => {
+    put(
+      todoList,
+      todoListItem(
+        listObject.title,
+        listObject.priority,
+        listObject.checked,
+        index
+      )
+    );
   });
   const newListInputButton = put("button.new-list-item-button", "+ New Task");
   put(todoList, newListInputButton);
