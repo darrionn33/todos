@@ -143,6 +143,7 @@ form.edit-list-item-form {
   background-color: white;
   width: min(90dvw, 700px);
   min-height: 50%;
+  max-height: 70%;
   display: flex;
   flex-direction: column;
   padding: 20px;

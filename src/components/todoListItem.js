@@ -42,7 +42,7 @@ export default function todoListItem(listItem, index) {
     const time_between_taps = 200; // 200ms
     if (time - lastClick < time_between_taps) {
       // do stuff
-      signal.emit("showEditItemDiv", (title, "", priority, checked));
+      signal.emit("showEditItemDiv", listItem, index);
     }
     lastClick = time;
   });
