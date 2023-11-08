@@ -252,6 +252,9 @@ form.edit-list-item-form > div > div > input[id="high"] {
     grid-template-rows: 60px 1fr;
     grid-template-columns: 1fr;
   }
+  header {
+    justify-content: center;
+  }
   div.sidebar {
     display: none;
   }
