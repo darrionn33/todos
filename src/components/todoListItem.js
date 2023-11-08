@@ -1,16 +1,17 @@
 import put from "put-selector";
 import signal from "signal-js";
 import svg from "svg";
-export default function todoListItem(title, priority, checked, index) {
+export default function todoListItem(listItem, index) {
   const todoListItem = put("div.todo-item");
-  todoListItem.setAttribute("data-priority", priority);
+  todoListItem.setAttribute("data-priority", listItem.priority);
 
   const checkBox = put("div.checkbox");
-  if (checked) {
+  if (listItem.checked) {
     checkBox.classList.add("checked");
   }
   checkBox.onclick = () => {
     checkBox.classList.toggle("checked");
+    listItem.checked = !listItem.checked;
     signal.emit("addListEntry", index, "checkbox");
   };
 
@@ -21,11 +22,31 @@ export default function todoListItem(title, priority, checked, index) {
   deleteButton.onclick = () => {
     signal.emit("addListEntry", index, "delete");
   };
-  
+
+  const todoListTitle = put("h3", listItem.title);
   put(todoListItem, checkBox);
-  put(todoListItem, "h3", title);
-  put(todoListItem, "p", priority.toUpperCase());
+  put(todoListItem, todoListTitle);
+  put(todoListItem, "p", listItem.priority.toUpperCase());
   put(todoListItem, deleteButton);
+
+  todoListTitle.ondblclick = () => {
+    signal.emit("showEditItemDiv", listItem, index);
+  };
+
+  // for touch devices
+  let lastClick = 0;
+  todoListTitle.addEventListener("touchstart", function (e) {
+    e.preventDefault(); // to disable browser default zoom on double tap
+    let date = new Date();
+    let time = date.getTime();
+    const time_between_taps = 200; // 200ms
+    if (time - lastClick < time_between_taps) {
+      // do stuff
+      signal.emit("showEditItemDiv", (title, "", priority, checked));
+    }
+    lastClick = time;
+  });
+  // for touch devices
 
   return todoListItem;
 }
