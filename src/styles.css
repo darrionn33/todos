@@ -143,6 +143,7 @@ div.new-list-item > svg {
   place-items: center;
 }
 form.edit-list-item-form {
+  position: relative;
   background-color: white;
   width: min(90dvw, 700px);
   min-height: 50%;
@@ -184,6 +185,14 @@ form.edit-list-item-form > button {
   padding: 10px;
   border-radius: 5px;
   color: white;
+  cursor: pointer;
+}
+form.edit-list-item-form > button#close-button {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background: red;
+  font-weight: 900;
 }
 form.edit-list-item-form > div > div {
   display: flex;

@@ -127,10 +127,17 @@ export default function editListitem(listItem = {}, index) {
   };
 
   put(editListitemBackdrop, editListItemForm);
-  editListItemForm.onclick = (e) => {
+
+  const closeButton = put("button#close-button", "X");
+  put(editListItemForm, closeButton);
+
+  closeButton.onclick = () => {
+    signal.emit("refreshTodoList");
+  };
+  editListItemForm.ondblclick = (e) => {
     e.stopPropagation();
   };
-  editListitemBackdrop.onclick = () => {
+  editListitemBackdrop.ondblclick = () => {
     signal.emit("refreshTodoList");
   };
 
