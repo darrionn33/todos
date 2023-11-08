@@ -256,4 +256,21 @@ form.edit-list-item-form > div > div > input[id="high"] {
   div.sidebar {
     display: none;
   }
+  button.new-list-item-button {
+    position: fixed;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    right: 10px;
+    bottom: 10px;
+    overflow: hidden;
+  }
+  button.new-list-item-button::after {
+    content: "+";
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    font-size: 40px;
+  }
 }
