@@ -119,7 +119,7 @@ export default function editListitem(listItem = {}, index) {
       ).value,
       desc: document.querySelector("form.edit-list-item-form > textarea").value,
       priority: document.querySelector(
-        '.priority-div > label > input[name="priority"]:checked'
+        '.priority-div > div > input[name="priority"]:checked'
       ).id,
       checked: document.querySelector("#done").checked,
     };
