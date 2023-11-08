@@ -38,6 +38,9 @@ html {
   justify-content: space-between;
   margin-bottom: 10px;
 }
+.todo-item > h3 {
+  line-height: 200%;
+}
 .todo-item > p {
   padding: 5px;
   outline: 1px solid black;
