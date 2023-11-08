@@ -128,6 +128,7 @@ button.new-list-item-button {
   background-color: rgb(37, 151, 142);
   color: white;
   cursor: pointer;
+  margin-bottom: 10px;
 }
 button.new-list-item-button,
 div.new-list-item {
