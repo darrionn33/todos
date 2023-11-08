@@ -26,7 +26,7 @@ export default function todoListItem(listItem, index) {
   const todoListTitle = put("h3", listItem.title);
   put(todoListItem, checkBox);
   put(todoListItem, todoListTitle);
-  put(todoListItem, "p", listItem.priority.toUpperCase());
+  put(todoListItem, "div.priority");
   put(todoListItem, deleteButton);
 
   todoListTitle.ondblclick = () => {

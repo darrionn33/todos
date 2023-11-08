@@ -69,31 +69,29 @@ main {
   outline: 1px solid;
   padding: 10px;
   width: 100%;
-  grid-template-columns: 30px 70fr 20fr 40px;
+  grid-template-columns: 30px 1fr 40px;
   justify-content: space-between;
   margin-bottom: 10px;
+  position: relative;
+  padding-left: 20px;
 }
 .todo-item > h3 {
   line-height: 200%;
 }
-.todo-item > p {
-  padding: 5px;
+.todo-item > div.priority {
+  position: absolute;
+  width: 5px;
+  height: 100%;
   outline: 1px solid black;
-  height: 2em;
-  align-self: self-end;
-  text-align: center;
-  line-height: 150%;
 }
-.todo-item[data-priority="low"] > p {
+.todo-item[data-priority="low"] > div.priority {
   background-color: lightgreen;
 }
-.todo-item[data-priority="medium"] > p {
+.todo-item[data-priority="medium"] > div.priority {
   background-color: purple;
-  color: white;
 }
-.todo-item[data-priority="high"] > p {
+.todo-item[data-priority="high"] > div.priority {
   background-color: red;
-  color: white;
 }
 .todo-item > div.checkbox {
   display: grid;
@@ -116,9 +114,8 @@ main {
   text-decoration: line-through;
   text-decoration-thickness: 4px;
 }
-.todo-item:has(.checked) > p {
-  background-color: transparent !important;
-  color: black !important;
+.todo-item:has(.checked) > div.priority {
+  background-color: black;
 }
 .todo-item > svg {
   width: 35px;
