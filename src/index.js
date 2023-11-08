@@ -1,8 +1,10 @@
 import "./styles.css";
 import rootRender from "./rootRender";
-import todoList from "./components/todoList";
 import signal from "signal-js";
 import editListitem from "./components/editListItem";
+import main from "./components/main";
+import header from "./components/header";
+import sidebar from "./components/sidebar";
 
 const defaultList = {
   title: "List #1",
@@ -67,11 +69,12 @@ signal.on("addListEntry", (indexOrEntry, type, updatedEntry) => {
 
 signal.on("refreshTodoList", () => {
   rootRender("", "rpc");
-  rootRender(todoList(list), "apc");
+  rootRender(main(list));
 });
 
 signal.on("showEditItemDiv", (listItem, index) => {
   rootRender(editListitem(listItem, index));
 });
-
-rootRender(todoList(list), "apc");
+rootRender(header());
+rootRender(sidebar());
+rootRender(main(list));

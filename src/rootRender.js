@@ -3,8 +3,8 @@ function rootRender(element, option = "apc") {
   if (option === "apc") {
     document.querySelector("#root").appendChild(element);
   } else if (option === "rpc") {
-    while (root.children.length > 0) {
-      root.removeChild(root.childNodes[0]);
+    while (root.children.length > 2) {
+      root.removeChild(root.childNodes[2]);
     }
   }
 }
