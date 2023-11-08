@@ -123,7 +123,7 @@ export default function editListitem(listItem = {}, index) {
       ).id,
       checked: document.querySelector("#done").checked,
     };
-    signal.emit("addListEntry", index, "editListItem", updatedItem);
+    signal.emit("updateList", "editItem", index, updatedItem);
   };
 
   put(editListitemBackdrop, editListItemForm);

@@ -5,14 +5,11 @@ import svg from "svg";
 export default function newListItemDiv() {
   const handleSubmit = () => {
     if (newListItemInput.value !== "") {
-      signal.emit(
-        "addListEntry",
-        {
-          title: newListItemInput.value,
-          priority: select.value,
-        },
-        "listItem"
-      );
+      signal.emit("updateList", "newItem", {
+        title: newListItemInput.value,
+        priority: select.value,
+        desc: "",
+      });
     }
     signal.emit("refreshTodoList");
   };

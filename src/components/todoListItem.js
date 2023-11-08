@@ -12,7 +12,7 @@ export default function todoListItem(listItem, index) {
   checkBox.onclick = () => {
     checkBox.classList.toggle("checked");
     console.log(listItem.checked);
-    signal.emit("addListEntry", index, "checkbox");
+    signal.emit("updateList", "checkItem", index);
   };
 
   let svgText =
@@ -20,7 +20,7 @@ export default function todoListItem(listItem, index) {
   const deleteButton = svg(svgText);
 
   deleteButton.onclick = () => {
-    signal.emit("addListEntry", index, "delete");
+    signal.emit("updateList", "deleteItem", index);
   };
 
   const todoListTitle = put("h3", listItem.title);

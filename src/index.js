@@ -48,19 +48,19 @@ if (!localStorage.getItem("list")) {
 
 const list = JSON.parse(localStorage.getItem("list"));
 
-signal.on("addListEntry", (indexOrEntry, type, updatedEntry) => {
+signal.on("updateList", (type, indexOrEntry, updatedEntry) => {
   switch (type) {
-    case "listItem":
+    case "newItem":
       list.list.push(indexOrEntry);
       break;
-    case "checkbox":
+    case "checkItem":
       list.list[indexOrEntry].checked = !list.list[indexOrEntry].checked;
       break;
-    case "delete":
+    case "deleteItem":
       list.list.splice(indexOrEntry, 1);
       signal.emit("refreshTodoList");
       break;
-    case "editListItem":
+    case "editItem":
       list.list[indexOrEntry] = updatedEntry;
       signal.emit("refreshTodoList");
   }
@@ -75,6 +75,7 @@ signal.on("refreshTodoList", () => {
 signal.on("showEditItemDiv", (listItem, index) => {
   rootRender(editListitem(listItem, index));
 });
+
 rootRender(header());
 rootRender(sidebar());
 rootRender(main(list));
