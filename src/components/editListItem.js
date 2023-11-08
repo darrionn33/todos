@@ -1,6 +1,6 @@
 import put from "put-selector";
 import signal from "signal-js";
-export default function editListitem(listItem, index) {
+export default function editListitem(listItem = {}, index) {
   const editListitemBackdrop = put("div.edit-list-item-backdrop");
   const editListItemForm = put("form.edit-list-item-form");
 
@@ -13,32 +13,41 @@ export default function editListitem(listItem, index) {
   const priorityDiv = put("div.priority-div");
   put(priorityDiv, "h4", "Priority");
 
+  const chillDiv = put("div");
   const labelChill = put("label", "Chill");
   labelChill.setAttribute("for", "chill");
-  put(priorityDiv, labelChill);
-  put(labelChill, "input", {
+
+  put(chillDiv, "input", {
     id: "chill",
     type: "radio",
     name: "priority",
   });
+  put(chillDiv, labelChill);
+  put(priorityDiv, chillDiv);
 
+  const moderateDiv = put("div");
   const labelModerate = put("label", "Moderate");
   labelModerate.setAttribute("for", "moderate");
-  put(priorityDiv, labelModerate);
-  put(labelModerate, "input", {
+
+  put(moderateDiv, "input", {
     id: "moderate",
     type: "radio",
     name: "priority",
   });
+  put(moderateDiv, labelModerate);
+  put(priorityDiv, moderateDiv);
 
+  const urgentDiv = put("div");
   const labelUrgent = put("label", "Urgent");
   labelUrgent.setAttribute("for", "urgent");
-  put(priorityDiv, labelUrgent);
-  put(labelUrgent, "input", {
+  put(urgentDiv, labelUrgent);
+  put(urgentDiv, "input", {
     id: "urgent",
     type: "radio",
     name: "priority",
   });
+  put(urgentDiv, labelUrgent);
+  put(priorityDiv, urgentDiv);
 
   switch (listItem.priority) {
     case "urgent":
@@ -61,23 +70,29 @@ export default function editListitem(listItem, index) {
   const statusDiv = put("div.status-div");
   put(statusDiv, "h4", "Status");
 
+  const doneDiv = put("div");
   const labelDone = put("label", "Done");
   labelDone.setAttribute("for", "done");
-  put(statusDiv, labelDone);
-  put(labelDone, "input", {
+
+  put(doneDiv, "input", {
     id: "done",
     type: "radio",
     name: "status",
   });
+  put(doneDiv, labelDone);
+  put(statusDiv, doneDiv);
 
+  const notDoneDiv = put("div");
   const labelNotDone = put("label", "Not Done");
   labelNotDone.setAttribute("for", "not-done");
-  put(statusDiv, labelNotDone);
-  put(labelNotDone, "input", {
+
+  put(notDoneDiv, "input", {
     id: "not-done",
     type: "radio",
     name: "status",
   });
+  put(notDoneDiv, labelNotDone);
+  put(statusDiv, notDoneDiv);
 
   if (listItem.checked) {
     setTimeout(() => {
