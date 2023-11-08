@@ -34,7 +34,7 @@ html {
   outline: 1px solid;
   padding: 10px;
   width: 100%;
-  grid-template-columns: 30px 70fr 20fr 5fr;
+  grid-template-columns: 30px 70fr 20fr 40px;
   justify-content: space-between;
   margin-bottom: 10px;
 }
@@ -82,7 +82,7 @@ html {
   color: black !important;
 }
 .todo-item > svg {
-  width: 80%;
+  width: 35px;
   justify-self: self-end;
   fill: darkred;
   cursor: pointer;
@@ -127,4 +127,64 @@ div.new-list-item > svg {
   fill: white;
   background-color: rgb(37, 151, 142);
   cursor: pointer;
+}
+/* Edit List Item Styles */
+.edit-list-item-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  display: grid;
+  place-items: center;
+}
+form.edit-list-item-form {
+  background-color: white;
+  width: min(90dvw, 700px);
+  min-height: 50%;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 10px;
+  gap: 20px;
+}
+form.edit-list-item-form > *:focus {
+  outline: none;
+}
+form.edit-list-item-form > input:nth-child(1) {
+  padding: 10px;
+  border-bottom: 1px solid;
+}
+form.edit-list-item-form > textarea {
+  background-color: rgb(235, 235, 235);
+  padding: 10px;
+  height: 300px;
+  resize: none;
+  border-radius: 10px;
+}
+form.edit-list-item-form > div.priority-div,
+div.status-div {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  width: min(100%, 400px);
+}
+form.edit-list-item-form > div.priority-div > h4,
+div.status-div > h4 {
+  grid-column: 1/4;
+  justify-self: start;
+}
+form.edit-list-item-form > button {
+  background-color: rgb(0, 70, 160);
+  padding: 10px;
+  border-radius: 5px;
+  color: white;
+}
+form.edit-list-item-form > div > div {
+  display: flex;
+  gap: 10px;
+}
+form.edit-list-item-form > div > label > input {
+  accent-color: rgb(0, 70, 160);
 }
