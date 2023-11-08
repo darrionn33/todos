@@ -16,5 +16,9 @@ export default function todoList(listItem) {
     document.querySelector("input.new-list-item-input").focus();
   };
 
+  setTimeout(() => {
+    const instruction = put("p", "(double tap to edit)");
+    document.querySelector("div.todo-list > h2").appendChild(instruction);
+  }, 0);
   return todoList;
 }

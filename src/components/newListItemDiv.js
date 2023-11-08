@@ -16,9 +16,9 @@ export default function newListItemDiv() {
 
   const newListItemDiv = put("div.new-list-item");
   const select = put("select");
-  put(select, "option", "chill");
-  put(select, "option", "urgent");
-  put(select, "option", "moderate");
+  put(select, "option", "low");
+  put(select, "option", "high");
+  put(select, "option", "medium");
 
   const newListItemInput = put("input.new-list-item-input", {
     placeholder: "Enter a task here...",

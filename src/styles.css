@@ -50,6 +50,13 @@ main {
   background-color: cornflowerblue;
   color: white;
   padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.todo-list > h2 > p {
+  font-size: small;
+  color: rgb(230, 230, 230);
 }
 .todo-item {
   display: grid;
@@ -72,13 +79,14 @@ main {
   text-align: center;
   line-height: 150%;
 }
-.todo-item[data-priority="chill"] > p {
+.todo-item[data-priority="low"] > p {
   background-color: lightgreen;
 }
-.todo-item[data-priority="moderate"] > p {
-  background-color: yellow;
+.todo-item[data-priority="medium"] > p {
+  background-color: purple;
+  color: white;
 }
-.todo-item[data-priority="urgent"] > p {
+.todo-item[data-priority="high"] > p {
   background-color: red;
   color: white;
 }
@@ -221,6 +229,25 @@ form.edit-list-item-form > div > div {
   display: flex;
   gap: 10px;
 }
-form.edit-list-item-form > div > label > input {
+form.edit-list-item-form > div > div > input {
   accent-color: rgb(0, 70, 160);
+}
+form.edit-list-item-form > div > div > input[id="low"] {
+  accent-color: green;
+}
+form.edit-list-item-form > div > div > input[id="medium"] {
+  accent-color: purple;
+}
+form.edit-list-item-form > div > div > input[id="high"] {
+  accent-color: red;
+}
+@media screen and (max-width: 500px) {
+  div#root {
+    grid-template-areas: "header" "main";
+    grid-template-rows: 60px 1fr;
+    grid-template-columns: 1fr;
+  }
+  div.sidebar {
+    display: none;
+  }
 }

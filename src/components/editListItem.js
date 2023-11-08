@@ -13,56 +13,56 @@ export default function editListitem(listItem = {}, index) {
   const priorityDiv = put("div.priority-div");
   put(priorityDiv, "h4", "Priority");
 
-  const chillDiv = put("div");
-  const labelChill = put("label", "Chill");
-  labelChill.setAttribute("for", "chill");
+  const lowDiv = put("div");
+  const labellow = put("label", "Low");
+  labellow.setAttribute("for", "low");
 
-  put(chillDiv, "input", {
-    id: "chill",
+  put(lowDiv, "input", {
+    id: "low",
     type: "radio",
     name: "priority",
   });
-  put(chillDiv, labelChill);
-  put(priorityDiv, chillDiv);
+  put(lowDiv, labellow);
+  put(priorityDiv, lowDiv);
 
-  const moderateDiv = put("div");
-  const labelModerate = put("label", "Moderate");
-  labelModerate.setAttribute("for", "moderate");
+  const mediumDiv = put("div");
+  const labelmedium = put("label", "Medium");
+  labelmedium.setAttribute("for", "medium");
 
-  put(moderateDiv, "input", {
-    id: "moderate",
+  put(mediumDiv, "input", {
+    id: "medium",
     type: "radio",
     name: "priority",
   });
-  put(moderateDiv, labelModerate);
-  put(priorityDiv, moderateDiv);
+  put(mediumDiv, labelmedium);
+  put(priorityDiv, mediumDiv);
 
-  const urgentDiv = put("div");
-  const labelUrgent = put("label", "Urgent");
-  labelUrgent.setAttribute("for", "urgent");
-  put(urgentDiv, labelUrgent);
-  put(urgentDiv, "input", {
-    id: "urgent",
+  const highDiv = put("div");
+  const labelhigh = put("label", "High");
+  labelhigh.setAttribute("for", "high");
+  put(highDiv, labelhigh);
+  put(highDiv, "input", {
+    id: "high",
     type: "radio",
     name: "priority",
   });
-  put(urgentDiv, labelUrgent);
-  put(priorityDiv, urgentDiv);
+  put(highDiv, labelhigh);
+  put(priorityDiv, highDiv);
 
   switch (listItem.priority) {
-    case "urgent":
+    case "high":
       setTimeout(() => {
-        document.querySelector("#urgent").checked = true;
+        document.querySelector("#high").checked = true;
       }, 0);
       break;
-    case "moderate":
+    case "medium":
       setTimeout(() => {
-        document.querySelector("#moderate").checked = true;
+        document.querySelector("#medium").checked = true;
       }, 0);
       break;
-    case "chill":
+    case "low":
       setTimeout(() => {
-        document.querySelector("#chill").checked = true;
+        document.querySelector("#low").checked = true;
       }, 0);
       break;
   }
