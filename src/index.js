@@ -6,82 +6,139 @@ import main from "./components/main";
 import header from "./components/header";
 import sidebar from "./components/sidebar";
 
-const defaultList = {
-  title: "List #1",
-  list: [
-    {
-      title: "Brush teeth",
-      desc: "with toothpaste",
-      priority: "high",
-      checked: false,
-    },
-    {
-      title: "Watch anime",
-      desc: "with Hammy :))",
-      priority: "high",
-      checked: false,
-    },
-    {
-      title: "Eat breakfast",
-      desc: "tea and bread",
-      priority: "medium",
-      checked: false,
-    },
-    {
-      title: "Wash dishes",
-      desc: "use less water",
-      priority: "low",
-      checked: false,
-    },
-    {
-      title: "Take a poop",
-      desc: "dont take too long",
-      priority: "low",
-      checked: false,
-    },
-    {
-      title: "Cook rice",
-      desc: "3 tins should be enough",
-      priority: "high",
-      checked: false,
-    },
-  ],
-};
+const defaultLists = [
+  {
+    title: "List #1",
+    list: [
+      {
+        title: "Brush teeth",
+        desc: "with toothpaste",
+        priority: "high",
+        checked: false,
+      },
+      {
+        title: "Watch anime",
+        desc: "with Hammy :))",
+        priority: "high",
+        checked: false,
+      },
+      {
+        title: "Eat breakfast",
+        desc: "tea and bread",
+        priority: "medium",
+        checked: false,
+      },
+      {
+        title: "Wash dishes",
+        desc: "use less water",
+        priority: "low",
+        checked: false,
+      },
+      {
+        title: "Take a poop",
+        desc: "dont take too long",
+        priority: "low",
+        checked: false,
+      },
+      {
+        title: "Cook rice",
+        desc: "3 tins should be enough",
+        priority: "high",
+        checked: false,
+      },
+    ],
+  },
+  {
+    title: "List #2",
+    list: [
+      {
+        title: "Brush teeth",
+        desc: "with toothpaste",
+        priority: "high",
+        checked: false,
+      },
+      {
+        title: "Watch anime",
+        desc: "with Hammy :))",
+        priority: "high",
+        checked: false,
+      },
+      {
+        title: "Eat breakfast",
+        desc: "tea and bread",
+        priority: "medium",
+        checked: false,
+      },
+      {
+        title: "Wash dishes",
+        desc: "use less water",
+        priority: "low",
+        checked: false,
+      },
+      {
+        title: "Take a poop",
+        desc: "dont take too long",
+        priority: "low",
+        checked: false,
+      },
+      {
+        title: "Cook rice",
+        desc: "3 tins should be enough",
+        priority: "high",
+        checked: false,
+      },
+    ],
+  },
+];
 
-if (!localStorage.getItem("list")) {
-  localStorage.setItem("list", JSON.stringify(defaultList));
+if (!localStorage.getItem("lists")) {
+  localStorage.setItem("lists", JSON.stringify(defaultLists));
 }
 
-const list = JSON.parse(localStorage.getItem("list"));
+const lists = JSON.parse(localStorage.getItem("lists"));
+
+let currentListIndex = 0;
 
 signal.on("updateList", (type, indexOrEntry, updatedEntry) => {
   switch (type) {
     case "newItem":
-      list.list.push(indexOrEntry);
+      lists[currentListIndex].list.push(indexOrEntry);
       break;
     case "checkItem":
-      list.list[indexOrEntry].checked = !list.list[indexOrEntry].checked;
+      lists[currentListIndex].list[indexOrEntry].checked =
+        !lists[currentListIndex].list[indexOrEntry].checked;
       break;
     case "deleteItem":
-      list.list.splice(indexOrEntry, 1);
+      lists[currentListIndex].list.splice(indexOrEntry, 1);
       signal.emit("refreshTodoList");
       break;
     case "editItem":
-      list.list[indexOrEntry] = updatedEntry;
+      lists[currentListIndex].list[indexOrEntry] = updatedEntry;
       signal.emit("refreshTodoList");
+      break;
+    case "changeCurrentActiveList":
+      currentListIndex = indexOrEntry;
+      signal.emit("refreshTodoList");
+
+      break;
   }
-  localStorage.setItem("list", JSON.stringify(list));
+  localStorage.setItem("lists", JSON.stringify(lists));
 });
 
 signal.on("refreshTodoList", () => {
   rootRender("", "rpc");
-  rootRender(main(list));
+  rootRender(sidebar(lists, currentListIndex));
+  rootRender(main(currentListSelector(currentListIndex)));
 });
 
 signal.on("showEditItemDiv", (listItem, index) => {
   rootRender(editListitem(listItem, index));
 });
 
+const currentListSelector = (currentListIndex) => {
+  return lists[currentListIndex];
+};
+
 rootRender(header());
-rootRender(sidebar());
-rootRender(main(list));
+rootRender(sidebar(lists, currentListIndex));
+rootRender(main(currentListSelector(0)));

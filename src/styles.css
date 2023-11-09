@@ -37,6 +37,24 @@ div.sidebar {
   background-color: azure;
   padding: 10px;
   border-right: 1px solid;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+div.sidebar > button {
+  outline: 1px solid gray;
+  padding: 10px;
+  border-radius: 20px;
+  background-color: rgb(185, 210, 219);
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.5s;
+}
+div.sidebar > button:hover {
+  background-color: skyblue;
+}
+div.sidebar > button.active {
+  background-color: skyblue;
 }
 main {
   grid-area: main;

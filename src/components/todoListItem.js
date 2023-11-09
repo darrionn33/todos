@@ -11,7 +11,6 @@ export default function todoListItem(listItem, index) {
   }
   checkBox.onclick = () => {
     checkBox.classList.toggle("checked");
-    console.log(listItem.checked);
     signal.emit("updateList", "checkItem", index);
   };
 
