@@ -155,10 +155,10 @@ div.new-list-item {
   outline: 1px solid;
 }
 div.new-list-item {
-  display: flex;
+  display: grid;
+  grid-template-columns: 90fr 10fr 40px;
 }
 input.new-list-item-input {
-  width: 62%;
   height: 100%;
   padding: 10px;
 }
@@ -166,7 +166,6 @@ input.new-list-item-input:focus {
   outline: none;
 }
 div.new-list-item > select {
-  width: 30%;
   height: 100%;
   text-transform: uppercase;
   border-left: 1px solid;
@@ -182,6 +181,7 @@ div.new-list-item > svg {
   fill: white;
   background-color: rgb(37, 151, 142);
   cursor: pointer;
+  height: 100%;
 }
 /* Edit List Item Styles */
 .edit-list-item-backdrop {
