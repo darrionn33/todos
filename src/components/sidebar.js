@@ -16,5 +16,13 @@ export default function sidebar(lists, currentListIndex) {
     put(sidebar, listButton(list, index, currentListIndex));
   });
 
+  const xButton = put("button#x-button", "X");
+
+  xButton.onclick = () => {
+    document.querySelector("div.sidebar").style.transform = "translateX(-100%)";
+  };
+
+  put(sidebar, xButton);
+
   return sidebar;
 }
