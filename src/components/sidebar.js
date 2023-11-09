@@ -1,20 +1,19 @@
 import put from "put-selector";
-import signal from "signal-js";
+import newListDiv from "./newListDiv";
+import listButton from "./listButton";
 export default function sidebar(lists, currentListIndex) {
   const sidebar = put("div.sidebar");
 
+  const newListDivButton = put("button", "+ New List");
+  newListDivButton.onclick = () => {
+    newListDivButton.disabled = true;
+    put(sidebar, newListDiv());
+    document.querySelector("div.new-list-div > input").focus();
+  };
+  put(sidebar, newListDivButton);
+
   lists.forEach((list, index) => {
-    const listButton = put("button", list.title);
-    listButton.setAttribute("data-index", index);
-    if (index === currentListIndex) {
-      listButton.classList.add("active");
-    }
-
-    listButton.onclick = () => {
-      signal.emit("updateList", "changeCurrentActiveList", index);
-    };
-
-    put(sidebar, listButton);
+    put(sidebar, listButton(list, index, currentListIndex));
   });
 
   return sidebar;

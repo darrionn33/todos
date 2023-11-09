@@ -121,6 +121,21 @@ signal.on("updateList", (type, indexOrEntry, updatedEntry) => {
       signal.emit("refreshTodoList");
 
       break;
+    case "newList":
+      lists.push({ title: indexOrEntry, list: [] });
+      currentListIndex = lists.length - 1;
+      signal.emit("refreshTodoList");
+      break;
+    case "deleteList":
+      if (lists.length === 1) {
+        lists[0] = { title: "Default List", list: [] };
+        currentListIndex = 0;
+      } else {
+        lists.splice(indexOrEntry, 1);
+        currentListIndex--;
+      }
+      signal.emit("refreshTodoList");
+      break;
   }
   localStorage.setItem("lists", JSON.stringify(lists));
 });

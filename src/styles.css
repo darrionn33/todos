@@ -41,7 +41,8 @@ div.sidebar {
   flex-direction: column;
   gap: 10px;
 }
-div.sidebar > button {
+div.sidebar > button,
+div.new-list-div {
   outline: 1px solid gray;
   padding: 10px;
   border-radius: 20px;
@@ -49,12 +50,50 @@ div.sidebar > button {
   color: white;
   cursor: pointer;
   transition: background-color 0.5s;
+  position: relative;
+  display: flex;
+}
+div.sidebar > button:not(button:nth-child(1)) {
+  padding-left: 15px;
 }
 div.sidebar > button:hover {
   background-color: skyblue;
 }
 div.sidebar > button.active {
   background-color: skyblue;
+}
+div.sidebar > button:nth-child(1) {
+  background-color: rgb(94, 158, 94);
+  height: 40px;
+  display: block;
+}
+div.sidebar > button > svg {
+  width: 20px;
+  position: absolute;
+  right: 10px;
+  top: calc(50% - 10px);
+  fill: darkred;
+}
+div.new-list-div {
+  overflow: hidden;
+  height: 40px;
+  background-color: transparent;
+  padding: 0;
+}
+div.new-list-div > input {
+  width: calc(100% - 20px);
+  padding-left: 10px;
+}
+div.new-list-div > input:focus {
+  outline: none;
+}
+div.new-list-div > button {
+  display: grid;
+  place-items: center;
+  font-size: large;
+  width: 30px;
+  background-color: rgb(94, 158, 94);
+  color: white;
 }
 main {
   grid-area: main;
