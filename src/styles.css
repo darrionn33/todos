@@ -257,6 +257,7 @@ form.edit-list-item-form > div > div > input[id="high"] {
     display: none;
   }
   button.new-list-item-button {
+    z-index: 10;
     position: fixed;
     border-radius: 50%;
     width: 70px;
@@ -272,5 +273,8 @@ form.edit-list-item-form > div > div > input[id="high"] {
     display: grid;
     place-items: center;
     font-size: 40px;
+  }
+  .todo-list {
+    padding-bottom: 100px;
   }
 }
