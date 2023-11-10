@@ -1,6 +1,7 @@
 import put from "put-selector";
 import signal from "signal-js";
 import svg from "svg";
+import doubleTapListener from "./doubleTapListener";
 export default function todoListItem(listItem, index) {
   const todoListItem = put("div.todo-item");
   todoListItem.setAttribute("data-priority", listItem.priority);
@@ -32,20 +33,9 @@ export default function todoListItem(listItem, index) {
     signal.emit("showEditItemDiv", listItem, index);
   };
 
-  // for touch devices
-  let lastClick = 0;
-  todoListTitle.addEventListener("touchstart", function (e) {
-    e.preventDefault(); // to disable browser default zoom on double tap
-    let date = new Date();
-    let time = date.getTime();
-    const time_between_taps = 200; // 200ms
-    if (time - lastClick < time_between_taps) {
-      // do stuff
-      signal.emit("showEditItemDiv", listItem, index);
-    }
-    lastClick = time;
+  doubleTapListener(todoListItem, () => {
+    signal.emit("showEditItemDiv", listItem, index);
   });
-  // for touch devices
 
   return todoListItem;
 }
