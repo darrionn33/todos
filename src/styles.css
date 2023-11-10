@@ -236,7 +236,7 @@ div.new-list-item {
 }
 div.new-list-item {
   display: grid;
-  grid-template-columns: 90fr 10fr 40px;
+  grid-template-columns: 10fr 90fr 40px;
 }
 input.new-list-item-input {
   height: 100%;
@@ -248,7 +248,6 @@ input.new-list-item-input:focus {
 div.new-list-item > select {
   height: 100%;
   text-transform: uppercase;
-  border-left: 1px solid;
   background-color: rgb(37, 151, 142);
   color: white;
 }

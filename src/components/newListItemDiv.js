@@ -35,8 +35,8 @@ export default function newListItemDiv() {
   const checkBoxSvg = svg(svgText);
   checkBoxSvg.addEventListener("click", handleSubmit);
 
-  put(newListItemDiv, newListItemInput);
   put(newListItemDiv, select);
+  put(newListItemDiv, newListItemInput);
   put(newListItemDiv, checkBoxSvg);
 
   return newListItemDiv;
