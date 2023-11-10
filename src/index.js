@@ -5,6 +5,7 @@ import editListitem from "./components/editListItem";
 import main from "./components/main";
 import header from "./components/header";
 import sidebar from "./components/sidebar";
+import settings from "./components/settingsButton";
 
 const defaultLists = [
   {
@@ -136,6 +137,11 @@ signal.on("updateList", (type, indexOrEntry, updatedEntry) => {
       }
       signal.emit("refreshTodoList");
       break;
+    case "resetLists":
+      lists.length = 0;
+      lists[0] = defaultLists[0];
+      signal.emit("refreshTodoList");
+      break;
   }
   localStorage.setItem("lists", JSON.stringify(lists));
 });
@@ -153,7 +159,7 @@ signal.on("showEditItemDiv", (listItem, index) => {
 const currentListSelector = (currentListIndex) => {
   return lists[currentListIndex];
 };
-
+rootRender(settings());
 rootRender(header());
 rootRender(sidebar(lists, currentListIndex));
 rootRender(main(currentListSelector(0)));

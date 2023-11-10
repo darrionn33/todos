@@ -22,6 +22,42 @@ div#root {
   grid-template-rows: 60px 1fr;
   grid-template-areas: "header header" "sidebar main";
 }
+button.settings-button {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  right: 10px;
+  top: 15px;
+  z-index: 12;
+}
+button.settings-button > svg {
+  fill: white;
+}
+div.settings-backdrop {
+  width: 100dvw;
+  height: 100dvh;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 13;
+  display: grid;
+  place-items: center;
+}
+div.settings-div {
+  outline: 1px solid;
+  padding: 50px;
+  background-color: white;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+}
+div.settings-div > button {
+  outline: 1px solid;
+  padding: 15px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: red;
+  color: white;
+}
 div.ham-menu,
 div.sidebar > button#x-button {
   display: none;
