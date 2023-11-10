@@ -1,9 +1,40 @@
 import put from "put-selector";
 import todoListItem from "./todoListItem";
 import newListItemDiv from "./newListItemDiv";
-export default function todoList(listItem) {
+import doubleTapListener from "./doubleTapListener";
+import signal from "signal-js/src";
+export default function todoList(listItem, index) {
   const todoList = put("div.todo-list");
-  put(todoList, "h2", listItem.title);
+  const todoListTitle = put("h2", listItem.title);
+
+  todoListTitle.ondblclick = () => {
+    put(todoListTitle, "!");
+    editTitleInput.style.display = "flex";
+    editTitleInput.focus();
+  };
+
+  doubleTapListener(todoListTitle, () => {
+    put(todoListTitle, "!");
+    editTitleInput.style.display = "flex";
+    editTitleInput.focus();
+  });
+
+  put(todoList, todoListTitle);
+
+  const editTitleInput = put("input.edit-title-input", {
+    value: listItem.title,
+    spellcheck: false,
+  });
+
+  editTitleInput.onblur = () => {
+    if (editTitleInput.value !== "") {
+      signal.emit("updateList", "renameList", index, editTitleInput.value);
+    } else {
+      signal.emit("refreshTodoList");
+    }
+  };
+
+  put(todoList, editTitleInput);
 
   const newListInputButton = put("button.new-list-item-button", "+ New Task");
   put(todoList, newListInputButton);
@@ -22,5 +53,6 @@ export default function todoList(listItem) {
     const instruction = put("p", "(double tap to edit)");
     document.querySelector("div.todo-list > h2").appendChild(instruction);
   }, 0);
+
   return todoList;
 }

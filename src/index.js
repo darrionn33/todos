@@ -142,6 +142,10 @@ signal.on("updateList", (type, indexOrEntry, updatedEntry) => {
       lists[0] = defaultLists[0];
       signal.emit("refreshTodoList");
       break;
+    case "renameList":
+      lists[indexOrEntry].title = updatedEntry;
+      signal.emit("refreshTodoList");
+      break;
   }
   localStorage.setItem("lists", JSON.stringify(lists));
 });
@@ -149,7 +153,7 @@ signal.on("updateList", (type, indexOrEntry, updatedEntry) => {
 signal.on("refreshTodoList", () => {
   rootRender("", "rpc");
   rootRender(sidebar(lists, currentListIndex));
-  rootRender(main(currentListSelector(currentListIndex)));
+  rootRender(main(currentListSelector(currentListIndex), currentListIndex));
 });
 
 signal.on("showEditItemDiv", (listItem, index) => {
@@ -162,4 +166,4 @@ const currentListSelector = (currentListIndex) => {
 rootRender(settings());
 rootRender(header());
 rootRender(sidebar(lists, currentListIndex));
-rootRender(main(currentListSelector(0)));
+rootRender(main(currentListSelector(0), currentListIndex));
